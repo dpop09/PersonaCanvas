@@ -1,0 +1,2909 @@
+@font-face {
+  font-family: "DuneRise";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../../public/fonts/Dune_Rise.ttf") format("truetype");
+}
+
+/*
+Styling by using element ids
+naming format is "[ComponentName]-[ElementType]-[DescriptiveName]"
+*/
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**dpop09** Login.js component styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#Login-Container {
+  position: fixed; /* Use fixed to center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #333333;
+  border-radius: 10px; /* More pronounced border-radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden; /* Ensure no inner content overflows */
+}
+
+#Login-Container-top {
+  text-align: center; /* Center contents */
+  padding: 20px 0; /* More padding at top */
+  border-bottom: solid 1px #f7f7f7;
+}
+
+#Login-Container-top img {
+  height: auto; /* Maintain aspect ratio */
+  width: 80px;
+}
+
+#Login-Container-top h1 {
+  font-size: 24px;
+  color: #f7f7f7; /* Title color */
+  margin: 0;
+}
+
+#Login-Form {
+  padding: 20px; /* Padding inside the form */
+  padding-bottom: 0;
+}
+
+#Login-FormControl-uname,
+#Login-FormControl-password {
+  width: 100%; /* Full width inputs */
+  padding: 10px; /* Padding inside inputs */
+  border: 1px solid #d0d0d0; /* Border color */
+  font-size: 16px;
+  background-color: #f7f7f7; /* Background color */
+  box-sizing: border-box; /* Include padding in width */
+  margin-bottom: 10px;
+}
+#Login-FormControl-password {
+  margin-bottom: 0px;
+}
+
+#Login-Form label {
+  margin-bottom: 0px; /* labels and text fields closer to each other */
+}
+
+#Login-FormControl-uname:focus,
+#Login-FormControl-password:focus {
+  border-color: #98d7c2;
+  box-shadow: 0 0 5px #ddffe7; /* Focus shadow */
+}
+
+#Login-div-password {
+  position: relative; /* Relative for absolute positioning of icon */
+}
+
+#Login-Button-show-password,
+#Login-Button-hide-password {
+  position: absolute; /* Absolute position */
+  right: 10px; /* Position to the right */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%);
+  width: 24px; /* Size of the icon */
+  height: 24px;
+  background-image: url("../images/eye-password-show.svg"); /* replaced the icon with an svg */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: transparent; /* No background */
+  border: none;
+  cursor: pointer;
+}
+
+#Login-Button-hide-password {
+  background-image: url("../images/eye-password-hide.svg"); /* replaced the icon with an svg */
+}
+#Login-p-forgot-password {
+  text-align: right;
+  font-size: 15px;
+  font-weight: bold;
+  color: #ddffe7;
+  cursor: pointer;
+  text-decoration: none; /* No underline */
+  padding: 0;
+  margin: 0;
+  transition: 0.3s;
+}
+#Login-p-forgot-password:hover {
+  color: #98d7c2;
+}
+#Login-Button-signin {
+  display: block; /* Block to take full width */
+  width: 100%; /* Full width button */
+  padding: 9px; /* Padding for size */
+  margin-top: 10px; /* Space from last input */
+  background-color: #ddffe7;
+  color: black; /* Text color */
+  border: none;
+  border-radius: 5px;
+  font-size: 18px; /* Button text size */
+  cursor: pointer;
+}
+
+#Login-Button-signin:hover {
+  background-color: #98d7c2; /* Darker on hover */
+}
+
+#Login-Container-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center; /* Center align text */
+  padding-bottom: 15px; /* Padding top and bottom */
+  color: #ffffff; /* Text color */
+  font-size: 15px; /* Size of the text */
+}
+#Login-Container-bottom p {
+  margin-bottom: 0;
+}
+
+#Login-p-register-link {
+  font-weight: bold;
+  color: #ddffe7;
+  cursor: pointer;
+  text-decoration: none; /* No underline */
+  transition: 0.3s;
+}
+
+#Login-p-register-link:hover {
+  color: #98d7c2;
+}
+
+#Login-div-guest {
+  display: flex;
+  justify-content: center;
+  text-align: center; /* Center align text */
+  color: #ffffff; /* Text color */
+  font-size: 15px; /* Size of the text */
+}
+#Login-p-guest-link {
+  font-weight: bold;
+  color: #ddffe7;
+  margin-left: 4px;
+  cursor: pointer;
+  text-decoration: none; /* No underline */
+  transition: 0.3s;
+}
+#Login-p-guest-link:hover {
+  color: #98d7c2;
+}
+
+#Login-div-errorMessage {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #fa5252; /* Error message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+
+html {
+  font-size: 100%;
+}
+
+/* adding responsiveness - jareshi */
+
+/* Media query for small screens: when the screen width is less than 768px */
+@media (max-width: 400px) {
+  #Login-Container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    background-color: #333333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+  #Login-Button-show-password,
+  #Login-Button-hide-password {
+    position: absolute;
+    right: 15px; /* Position to the right inside the form */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+  }
+}
+
+/* Media query for very small screens: when the screen width is less than 480px */
+@media (max-width: 450px) {
+  html {
+    font-size: 14px; /* Reduce font size for small screens */
+  }
+  #Login-FormControl-uname,
+  #Login-FormControl-password {
+    font-size: 14px; /* Reduce font size for form controls */
+  }
+  #Login-Button-signin {
+    font-size: 14px; /* Reduce font size for the sign-in button */
+  }
+  #Login-Container-bottom {
+    font-size: 14px; /* Reduce font size for bottom text */
+  }
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ **dpop09** Register.js component styling 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#Register-Container {
+  position: fixed;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #333333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+#Register-Container-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f7f7f7;
+}
+
+#Register-Container-top img {
+  height: auto;
+  width: 80px;
+}
+
+#Register-Container-top h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+#Register-Form {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+#Register-FormControl-email,
+#Register-FormControl-uname,
+#Register-FormControl-password,
+#Register-FormControl-confirm-password {
+  width: 100%; /* Adjust width to allow space for the icon */
+  padding: 10px;
+  padding-right: 40px; /* Extra padding to not overlay the text on the icon */
+  border: 1px solid #d0d0d0;
+  font-size: 16px;
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  position: relative; /* For absolute positioning of the icon */
+}
+
+#Register-Form label {
+  margin-bottom: -2px; /* adjust labels and text fields closer to each other */
+}
+
+#Register-FormControl-email:focus,
+#Register-FormControl-uname:focus,
+#Register-FormControl-password:focus,
+#Register-FormControl-confirm-password:focus {
+  border-color: #98d7c2;
+  box-shadow: 0 0 5px #ddffe7;
+}
+#Register-div-password {
+  position: relative; /* This ensures that the button can be absolutely positioned within */
+  margin-bottom: 1rem;
+}
+#Register-div-confirm-password {
+  position: relative; /* This ensures that the button can be absolutely positioned within */
+}
+#Register-Button-show-password,
+#Register-Button-hide-password,
+#Register-Button-show-confirm-password,
+#Register-Button-hide-confirm-password {
+  position: absolute; /* Absolute position the button to the right */
+  right: 10px; /* Align to the right with some space */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Ensure it's centered */
+  width: 24px; /* Size of the icon */
+  height: 24px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: transparent; /* No background */
+  border: none;
+  cursor: pointer;
+}
+
+#Register-Button-show-password,
+#Register-Button-show-confirm-password {
+  background-image: url("../images/eye-password-show.svg");
+}
+
+#Register-Button-hide-password,
+#Register-Button-hide-confirm-password {
+  background-image: url("../images/eye-password-hide.svg");
+}
+
+#Register-ul-password-requirements {
+  list-style-type: none; /* Removes the default list styling */
+  padding: 0; /* Removes default padding */
+  margin-top: 10px; /* Adds some space between the input field and the requirements list */
+  font-weight: bold;
+  width: calc(100% - 10px); /* Adjusts width to account for padding */
+}
+
+#Register-li-requirement-met {
+  color: #ddffe7; /* Color for requirement met */
+}
+
+#Register-li-requirement-not-met {
+  color: #fa5252; /* Color for requirement not met */
+}
+
+#Register-Button {
+  background-color: #ddffe7;
+  color: #333333;
+  margin-top: 10px;
+  padding: 9px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 18px; /* Button text size */
+}
+
+#Register-Button:hover {
+  background-color: #98d7c2;
+}
+
+#Register-div-bottom {
+  display: flex;
+  justify-content: space-between;
+  text-align: center; /* Center align text */
+  color: #ffffff; /* Text color */
+  font-size: 15px; /* Size of the text */
+}
+
+#Register-p-login-link {
+  font-weight: bold;
+  color: #ddffe7;
+  cursor: pointer;
+  text-decoration: none; /* No underline */
+}
+
+#Register-p-login-link:hover {
+  color: #98d7c2;
+}
+
+#Register-p-errorMessage {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #fa5252;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/* Responsive adjustments, similar to those for the login form */
+@media (max-width: 768px) {
+  #Register-Container-top,
+  #Register-Container-bottom,
+  #Register-Form {
+    padding: 15px; /* Add padding inside the container */
+  }
+  #Register-FormControl-email,
+  #Register-FormControl-uname,
+  #Register-FormControl-password {
+    width: 100%; /* Make form controls full width */
+  }
+  #Register-Button-show-password,
+  #Register-Button-hide-password {
+    position: absolute;
+    right: 15px; /* Position to the right inside the form */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+  }
+}
+
+/* Media query for very small screens: when the screen width is less than 480px */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px; /* Reduce font size for small screens */
+  }
+  #Register-FormControl-email,
+  #Register-FormControl-uname,
+  #Register-FormControl-password,
+  #Register-FormControl-confirm-password {
+    font-size: 14px; /* Reduce font size for form controls */
+  }
+  #Register-Button {
+    font-size: 14px; /* Reduce font size for the register button */
+  }
+  #Register-Container-bottom {
+    font-size: 14px; /* Reduce font size for bottom text */
+  }
+}
+@media (max-width:400px) {
+  #Register-Container {
+    position: fixed;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    background-color: #333333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**RukiyahA** EmailVerify.js component styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#EmailVerify-Container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background-color: #333333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+#EmailVerify-Container-top {
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: solid 1px #f7f7f7;
+}
+
+#EmailVerify-Container-top h1 {
+  font-size: 35px;
+  margin-bottom: 0px;
+}
+
+#EmailVerify-Container h2 {
+  font-size: 17px;
+  padding-top: 20px;
+  text-align: center;
+}
+
+#EmailVerify-Container-Button-goback {
+  position: absolute;
+  bottom: 318px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 20px;
+  background-color: transparent;
+  border: none;
+  background-image: url("../images/goback-icon-mint.png");
+  background-size: cover;
+  background-position: left;
+  transition: 0.3s;
+  cursor: pointer;
+}
+#EmailVerify-Container-Button-goback:hover {
+  background-image: url("../images/goback-icon-spearmint.png");
+}
+#EmailVerify-input-code .form-control {
+  display: inline-block;
+  width: 60px;
+  height: 70px;
+  margin-right: 10px;
+}
+#EmailVerify-input-code {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+#EmailVerify-div-flexbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+#EmailVerify-p {
+  justify-content: center;
+  font-size: 15px;
+  padding-right: 5px;
+}
+#EmailVerify-p-resend-code {
+  justify-content: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: #ddffe7;
+  cursor: pointer;
+  text-decoration: none; /* No underline */
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  display: inline-block;
+}
+#EmailVerify-p-resend-code:hover {
+  color: #98d7c2;
+}
+
+#EmailVerify-div-submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#EmailVerify-Button-submit {
+  height: 50px;
+  width: 200px;
+  background-color: #ddffe7;
+  color: #333333;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: -10px;
+}
+
+#EmailVerify-Button-submit:hover {
+  background-color: #98d7c2;
+  color: #333333;
+}
+
+#EmailVerify-p-error {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #fa5252;
+  font-weight: bold;
+  font-size: 15px;
+}
+#EmailVerify-p-success {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ddffe7; /* Success message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+.EmailVerify-input::-webkit-inner-spin-button,
+.EmailVerify-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.EmailVerify-input {
+  font-size: 30px;
+  text-align: center;
+}
+@media (min-width: 992px) {
+  #EmailVerify-Container {
+    width: 600px; /* Adjust as needed */
+    height: 400px; /* Adjust as needed */
+  }
+  #EmailVerify-Container-top h1 {
+    font-size: 40px; /* Adjust as needed */
+  }
+}
+/* For screens between 768px and 992px */
+@media (min-width: 768px) and (max-width: 992px) {
+  #EmailVerify-Container {
+    width: 500px; /* Adjust as needed */
+    height: 450px; /* Adjust as needed */
+  }
+  #EmailVerify-Container-top h1 {
+    font-size: 38px; /* Adjust as needed */
+  }
+  #EmailVerify-Container-Button-goback {
+    bottom: 360px;
+  }
+}
+/* For screens smaller than 768px */
+@media (max-width: 768px) {
+  #EmailVerify-Container {
+    width: 350px; /* Adjust as needed */
+    height: 400px; /* Adjust as needed */
+  }
+  #EmailVerify-Container-top h1 {
+    font-size: 30px; /* Adjust as needed */
+  }
+  #EmailVerify-Container-Button-goback {
+    right: 10px;
+    left: 10px;
+  }
+}
+/* For screens smaller than 480px */
+@media (max-width: 480px) {
+  #EmailVerify-Container {
+    width: 350px; /* Adjust for very small screens */
+    height: 400px; /* Adjust for very small screens */
+  }
+  #EmailVerify-Container-top h1 {
+    font-size: 28px; /* Adjust for very small screens */
+  }
+  /* Adjust sizes and spacing for smaller screens */
+  #EmailVerify-input-code .form-control {
+    width: 50px; /* Smaller input boxes */
+    height: 60px;
+  }
+  #EmailVerify-Button-submit {
+    font-size: 18px; /* Smaller font */
+  }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**dpop09** ChatbotCreationUI.js component styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#ChatbotCreationUI-Container {
+  margin-top: 6em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333333;
+  border-radius: 1em;
+  padding: 2em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+#ChatbotCreationUI-Container-top {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid #f7f7f7;
+}
+#ChatbotCreationUI-div-asterisk {
+  display: flex;
+  justify-content: center;
+  padding-top: .5rem;
+  font-weight: bold;
+}
+#ChatbotCreationUI-Form {
+  padding-bottom: 2em;
+  padding-left: 4em;
+  padding-right: 4em;
+}
+#ChatbotCreationUI-FormLabel {
+  color: #d0d0d0;
+}
+#ChatbotCreationUI-FormControl-avatar,
+#ChatbotCreationUI-FormControl-name,
+#ChatbotCreationUI-FormControl-greeting,
+#ChatbotCreationUI-FormControl-personality,
+#ChatbotCreationUI-FormControl-whitelist,
+#ChatbotCreationUI-FormControl-file {
+  background-color: #f7f7f7;
+  border: 2px solid #d0d0d0;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  margin-bottom: 2em;
+}
+#ChatbotCreationUI-FormControl-avatar:focus,
+#ChatbotCreationUI-FormControl-name:focus,
+#ChatbotCreationUI-FormControl-greeting:focus,
+#ChatbotCreationUI-FormControl-personality:focus,
+#ChatbotCreationUI-FormControl-whitelist:focus,
+#ChatbotCreationUI-FormControl-file:focus {
+  border-color: #d0d0d0;
+  box-shadow: 0 0 8px 0 rgba(124, 186, 174, 0.5);
+}
+#ChatbotCreationUI-div-buttons {
+  padding: 4rem;
+  padding-top: 0rem;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#ChatbotCreationUI-Button-create,
+#ChatbotCreationUI-Button-advanced {
+  background-color: #ddffe7;
+  color: #333333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: large;
+}
+#ChatbotCreationUI-Button-advanced-active {
+  background-color: #98d7c2;
+}
+#ChatbotCreationUI-Button-create:hover,
+#ChatbotCreationUI-Button-advanced:hover {
+  background-color: #98d7c2;
+}
+#ChatbotCreationUI-div-errorMessage {
+  text-align: center;
+  color: #fa5252; /* Error message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+@media (max-width: 991px) {
+  #ChatbotCreationUI-Container {
+    margin-top: 4.75em;
+  }
+}
+@media (max-width: 768px) {
+  #ChatbotCreationUI-Button-create,
+  #ChatbotCreationUI-Button-advanced {
+    background-color: #ddffe7;
+    color: #333333;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: medium;
+  }
+}
+@media (max-width: 560px) {
+  #ChatbotCreationUI-Form {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+@media (max-width: 439px) {
+  #ChatbotCreationUI-div-buttons {
+    flex-direction: column;
+  }
+  #ChatbotCreationUI-Button-advanced,
+  #ChatbotCreationUI-Button-advanced-active {
+    margin-top: 1rem;
+    font-size: 13.8px;  
+  }
+}
+@media (max-width: 334px) {
+  #ChatbotCreationUI-Container-top > h1 {
+    font-size: 23px;
+  }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**dpop09** NavBar.js component styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#NavBar-Modal {
+  border-radius: 1rem;
+}
+#NavBar-ModalBody {
+  background-color: #333333;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#NavBar-ModalFooter {
+  background-color: #333333;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: space-around;
+  border-color: #c0c0c0;
+}
+#NavBar-Button-register,
+#NavBar-Button-login {
+  background-color: #ddffe7;
+  color: #333333;
+  transition: 0.3;
+  border: none;
+}
+#NavBar-Button-register:hover,
+#NavBar-Button-login:hover {
+  background-color: #98d7c2;
+}
+#NavBar-Navbar {
+  background-color: #282828;
+  border-bottom: solid 1px #d0d0d0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+#NavBar-NavbarBrand-logo {
+  margin-top: 5px;
+  color: #f7f7f7;
+  font-family: DuneRise;
+  padding-right: 0.5em;
+  font-size: 24px;
+  letter-spacing: 4px;
+}
+#NavBar-NavbarToggler {
+  border: none;
+  filter: brightness(10);
+  color: #f7f7f7;
+  border-radius: 0.25rem;
+  transition: 0.3s;
+}
+#NavBar-NavbarToggler:enabled {
+  color: #d0d0d0;
+}
+#NavBar-Nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: space-around;
+}
+#NavBar-NavLink {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  margin-left: 2em;
+  margin-right: 2em;
+  cursor: pointer;
+  font-size: smaller;
+  color: #f7f7f7;
+}
+#NavBar-NavLink > img {
+  width: 35px;
+  height: 35px;
+}
+@media (max-width: 1090px) {
+  #NavBar-NavLink {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+}
+@media (max-width: 991px) {
+  #NavBar-Nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-around;
+  }
+}
+@media (max-width: 480px) {
+  #NavBar-NavbarBrand-logo {
+    padding-right: 0em;
+    font-size: 20px;
+    letter-spacing: 0px;
+  }
+}
+@media (max-width: 340px) {
+  #NavBar-NavbarBrand-logo {
+    font-size: 18px;
+  }
+}
+@media (max-width: 385px) {
+  #NavBar-NavLink > img {
+    width: 25px;
+    height: 25px;
+  }
+  #NavBar-NavLink {
+    margin: 0;
+  }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**dpop09** Home.js component styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#Home-Container {
+  margin-top: 6em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333333;
+  border-radius: 1em;
+  padding: 2em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+#Home-div-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid #f7f7f7;
+}
+#Home-div-cards-loader {
+  /* **dpop09** found this css code in this website: https://css-loaders.com/spinner/*/
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #98d7c2;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
+  }
+}
+#Home-div-chatbot-cards-container-loading {
+  min-height: 18rem;
+  max-height: 18rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#Home-div-chatbot-cards-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-x: auto;
+  width: 100%;
+}
+#Home-Card-chatbot-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  min-width: 12rem;
+  min-height: 18rem;
+  max-width: 12rem;
+  max-height: 18rem;
+  background-color: #282828;
+  border: 1.6px solid #ddffe7;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 0.1s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+#Home-Card-chatbot-card:hover {
+  background-color: #2e2e2e;
+  border: 1px solid #98d7c2;
+}
+#Home-div-card-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+#Home-div-card-bottom {
+  margin: 0;
+  padding-top: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#Home-CardImg-avatar {
+  width: 8rem;
+  height: 8rem;
+  border: 2px solid #ddffe7;
+  border-radius: 50%;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  object-fit: cover;
+}
+#Home-Card-chatbot-card:hover #Home-CardImg-avatar {
+  border: 2px solid #98d7c2;
+}
+#Home-CardTitle-name {
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  color: #d0d0d0;
+}
+#Home-CardText-greeting {
+  font-size: 14px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #d0d0d0;
+}
+#Home-CardText-creator {
+  font-size: 13px;
+  font-style: italic;
+  color: #c0c0c0;
+  margin: 0;
+  padding: 0;
+}
+#Home-div-likes-flexbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#Home-div-likes-flexbox > img {
+  width: 20px;
+  height: 20px;
+}
+#Home-CardText-likes {
+  padding-left: 2px;
+  font-size: 13px;
+  color: #c0c0c0;
+}
+#Home-div-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 18rem;
+}
+#Home-div-empty > p {
+  color: #d0d0d0;
+  font-weight: bold;
+}
+#Home-div-section {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  color: #f7f7f7;
+  border-bottom: 1px solid #d0d0d0;
+}
+#Home-FormControl-search {
+  background-color: #f7f7f7;
+  border: 2px solid #d0d0d0;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  flex: 1; /* Ensures input takes up the available space */
+  margin-right: 0.5rem; /* Adds some space between the input and the button */
+}
+
+#Home-Form-search {
+  display: flex;
+  flex-direction: column;
+}
+
+#Home-Label-search {
+  color: #d0d0d0;
+  margin-bottom: 0.5rem;
+}
+
+#Home-Form-search-inputgroup {
+  display: flex;
+}
+
+#Home-Button-search {
+  white-space: nowrap; /* Prevents the text within the button from wrapping */
+  border: none;
+  margin-bottom: 10px;
+  color: #333333;
+  background-color: #ddffe7;
+}
+#Home-Button-search:hover {
+  background-color: #98d7c2; /* Darker on hover */
+}
+@media (max-width: 991px) {
+  #Home-Container {
+    margin-top: 4.75em;
+    width: 460rem;
+  }
+}
+@media (max-width: 768px) {
+  /* Enable vertical scrolling if screen width is less than 768px */
+  #Home-div-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #Home-div-chatbot-cards-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    width: auto;
+  }
+}
+@media (max-width: 480px) {
+  /* Reduce font size if screen width is less than 480px */
+  #Home-CardTitle-name {
+    font-size: 15px;
+  }
+  #Home-CardText-greeting {
+    font-size: 12px;
+  }
+}
+@media (max-width: 340px) {
+  #Home-Container {
+    margin-top: 4.45em;
+  }
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**RukiyahA** Profile.js component styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#Profile-Container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 6em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333333;
+  border-radius: 1em;
+  padding: 2em;
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  height: auto;
+}
+#Profile-div-SideNav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 0;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  background-color: #282828;
+  border-right: 1px solid #c0c0c0;
+}
+#Profile-Card-SideNav,
+#Profile-Card-SideNav-top {
+  background-color: #282828;
+  color: #d0d0d0;
+  border-radius: 0;
+  border-bottom: #c0c0c0 1px solid;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+#Profile-Card-SideNav-top {
+  border-top-left-radius: 1rem;
+}
+#Profile-Card-SideNav:hover,
+#Profile-Card-SideNav-top:hover {
+  background-color: #333333;
+}
+#Profile-Card-SideNav-top-h6 {
+  padding-top: 0.5rem;
+  color: #d0d0d0;
+  font-size: large;
+}
+#Profile-div-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+}
+#Profile-div-header {
+  padding-top: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid #f7f7f7;
+}
+#Profile-div-form {
+  display: block;
+  padding-top: 2em;
+  width: 50%;
+}
+#Profile-FormLabel {
+  margin-bottom: 0;
+}
+#Profile-FormControl-username,
+#Profile-FormControl-email {
+  background-color: #d0d0d0;
+  border: 2px solid #d0d0d0;
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  cursor: not-allowed;
+}
+#Profile-Button-changeEmail,
+#Profile-Button-updateEmail,
+#Profile-Button-verifyCode,
+#Profile-Button-changePassword,
+#Profile-Button-updatePassword,
+#Profile-Button-changePassword-submit {
+  display: block; /* Block to take full width */
+  width: 100%; /* Full width button */
+  padding: 6px; /* Padding for size */
+  margin-top: 2.5rem; /* Space from last input */
+  margin-bottom: 1rem;
+  background-color: #ddffe7;
+  color: black; /* Text color */
+  border: none;
+  border-radius: 5px;
+  font-size: 18px; /* Button text size */
+  cursor: pointer;
+}
+#Profile-p-success {
+  text-align: center;
+  color: #ddffe7; /* Success message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+#Profile-p-error {
+  text-align: center;
+  color: #fa5252; /* Error message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+#Profile-Button-changeEmail:hover,
+#Profile-Button-updateEmail:hover,
+#Profile-Button-verifyCode:hover,
+#Profile-Button-changePassword:hover,
+#Profile-Button-updatePassword:hover,
+#Profile-Button-changePassword-submit:hover {
+  background-color: #98d7c2;
+}
+#Profile-FormGroup-updateEmail,
+#Profile-Form {
+  border: #c0c0c0 2px solid;
+  border-radius: 1rem;
+  padding: 20px;
+}
+#Profile-FormControl-new-email,
+#Profile-FormControl-password,
+#Profile-FormControl-confirm-password {
+  width: 100%; /* Adjust width to allow space for the icon */
+  padding: 6px;
+  padding-right: 40px; /* Extra padding to not overlay the text on the icon */
+  border: 1px solid #d0d0d0;
+  font-size: 16px;
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  position: relative; /* For absolute positioning of the icon */
+}
+#Profile-FormControl-new-email:focus,
+#Profile-FormControl-password:focus,
+#Profile-FormControl-confirm-password:focus {
+  border-color: #98d7c2;
+}
+#Profile-div-password {
+  position: relative; /* This ensures that the button can be absolutely positioned within */
+}
+#Profile-Button-show-password,
+#Profile-Button-hide-password,
+#Profile-Button-show-confirm-password,
+#Profile-Button-hide-confirm-password {
+  position: absolute; /* Absolute position */
+  right: 10px; /* Position to the right */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%);
+  width: 24px; /* Size of the icon */
+  height: 24px;
+  background-image: url("../images/eye-password-show.svg"); /* replaced the icon with an svg */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: transparent; /* No background */
+  border: none;
+  cursor: pointer;
+}
+#Profile-Button-hide-password,
+#Profile-Button-hide-confirm-password {
+  background-image: url("../images/eye-password-hide.svg");
+}
+#Profile-ul-password-requirements {
+  list-style-type: none; /* Removes the default list styling */
+  padding: 0; /* Removes default padding */
+  margin-top: 10px; /* Adds some space between the input field and the requirements list */
+  font-weight: bold;
+  width: calc(100% - 10px); /* Adjusts width to account for padding */
+}
+#Profile-li-requirement-met {
+  color: #ddffe7; /* Color for requirement met */
+}
+#Profile-li-requirement-not-met {
+  color: #fa5252; /* Color for requirement not met */
+}
+#Profile-Button-deleteAccount {
+  display: block; /* Block to take full width */
+  width: 100%; /* Full width button */
+  padding: 6px; /* Padding for size */
+  margin-top: 2.5rem; /* Space from last input */
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px; /* Button text size */
+  cursor: pointer;
+}
+#Profile-ModalHeader-deleteAccount {
+  display: flex;
+  justify-content: center;
+  background-color: #333333;
+}
+#Profile-ModalTitle-deleteAccount {
+  color: #d0d0d0;
+}
+#Profile-ModalBody-deleteAccount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #333333;
+  color: #d0d0d0;
+}
+#Profile-p-deleteAccount-warning {
+  text-align: center;
+}
+#Profile-span-deleteAccount-instruction,
+#Profile-p-deleteAccount-error {
+  color: #fa5252;
+}
+#Profile-FormControl-deleteConfirmation {
+  display: block;
+  width: auto;
+  padding: 6px;
+  border: 1px solid #d0d0d0;
+  font-size: 16px;
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-top: 1rem;
+}
+#Profile-FormControl-deleteConfirmation:focus {
+  border-color: #98d7c2;
+}
+#Profile-ModalFooter-deleteAccount {
+  display: flex;
+  justify-content: space-around;
+  background-color: #333333;
+}
+#Profile-div-cards-loader {
+  /* **dpop09** found this css code in this website: https://css-loaders.com/spinner/*/
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #98d7c2;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
+  }
+}
+#Profile-div-chatbot-cards-container-loading {
+  min-height: 18rem;
+  max-height: 18rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#Profile-div-chatbot-cards-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+#Profile-Card-chatbot-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  min-width: 12rem;
+  min-height: 18rem;
+  max-width: 12rem;
+  max-height: 18rem;
+  background-color: #282828;
+  border: 1.6px solid #ddffe7;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 0.1s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+#Profile-Card-chatbot-card:hover {
+  background-color: #2e2e2e;
+  border: 1px solid #98d7c2;
+}
+#Profile-div-card-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+#Profile-div-card-bottom {
+  margin: 0;
+  padding-top: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#Profile-CardImg-avatar {
+  width: 8rem;
+  height: 8rem;
+  border: 2px solid #ddffe7;
+  border-radius: 50%;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  object-fit: cover;
+}
+#Profile-Card-chatbot-card:hover #Profile-CardImg-avatar {
+  border: 2px solid #98d7c2;
+}
+#Profile-CardTitle-name {
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  color: #d0d0d0;
+}
+#Profile-CardText-greeting {
+  font-size: 14px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #d0d0d0;
+}
+#Profile-CardText-creator {
+  font-size: 13px;
+  font-style: italic;
+  color: #c0c0c0;
+  margin: 0;
+  padding: 0;
+}
+#Profile-div-likes-flexbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#Profile-div-likes-flexbox > img {
+  width: 20px;
+  height: 20px;
+}
+#Profile-CardText-likes {
+  padding-left: 2px;
+  font-size: 13px;
+  color: #c0c0c0;
+}
+#Profile-div-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 18rem;
+}
+#Profile-div-empty > p {
+  color: #d0d0d0;
+  font-weight: bold;
+}
+#Profile-div-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: space-around;
+  width: 100%;
+}
+#Profile-Modal-deleteSelect {
+  border-radius: 1rem;
+}
+#Profile-ModalTitle-deleteSelect {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #333333;
+  color: #d0d0d0;
+  border-bottom: 1px solid #c0c0c0;
+}
+#Profile-ModalBody-deleteSelect {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #333333;
+  height: 20rem;
+  overflow-y: auto;
+}
+#Profile-Card-deleteSelect {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  background-color: #333333;
+  border: none;
+  color: #d0d0d0;
+}
+#Profile-Card-deleteSelect:hover {
+  background-color: #2e2e2e;
+}
+#Profile-CardImg-avatar-deleteSelect {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #ddffe7;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+#Profile-CardTitle-name-deleteSelect {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+  width: 20%;
+  padding-top: 0.5rem;
+}
+#Profile-CardText-greeting-deleteSelect {
+  font-size: 15px;
+  text-align: left;
+  width: 70%;
+  padding-top: 0.9rem;
+  padding-bottom: 0;
+}
+#Profile-div-likes-flexbox-deleteSelect {
+  font-size: 15px;
+  text-align: left;
+  width: 2rem;
+  padding-top: 0.9rem;
+}
+#Profile-img-thumbsup {
+  width: 15px;
+  height: 15px;
+  margin-right: 2px;
+}
+#Profile-Button-deleteSelectChatbot {
+  font-size: 15px;
+  padding: 1px;
+}
+#Profile-Button-deleteAllChatbots,
+#Profile-Button-deleteSelectedChatbots {
+  display: block; /* Block to take full width */
+}
+@media (max-width: 991px) {
+  #Profile-Container {
+    margin-top: 4.75em;
+  }
+}
+@media (max-width: 1200px) {
+  #Profile-div-form {
+    display: block;
+    padding-top: 2em;
+    width: 60%;
+  }
+}
+@media (max-width: 992px) {
+  #Profile-div-form {
+    display: block;
+    padding-top: 2em;
+    width: 80%;
+  }
+}
+@media (max-width: 767px) {
+  #Profile-div-form {
+    display: block;
+    padding-top: 2em;
+    width: 100%;
+  }
+  #Profile-Button-deleteSelectChatbots,
+  #Profile-Button-deleteAllChatbots {
+    font-size: small;
+  }
+}
+@media (max-width: 575px) {
+  #Profile-Card-SideNav-top-h6 {
+    font-size: medium;
+  }
+}
+@media (max-width: 480px) {
+  /* Reduce font size if screen width is less than 480px */
+  #Profile-CardTitle-name {
+    font-size: 15px;
+  }
+  #Profile-CardText-greeting {
+    font-size: 12px;
+  }
+}
+@media (max-width: 425px) {
+  #Profile-Card-SideNav-top-h6 {
+    font-size: small;
+  }
+}
+@media (max-width: 379px) {
+  #Profile-Button-changePassword-submit {
+    font-size: 14px;
+  }
+}
+@media (max-width: 350px) {
+  #Profile-Button-verifyCode {
+    font-size: 13.9px;
+  }
+}
+@media (max-width: 342px) {
+  #Profile-Button-changePassword {
+    font-size: 15.6px;
+  }
+  #Profile-Button-changePassword-submit {
+    font-size: 12.25px;
+  }
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**RukiyahA** AboutUs.js component styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#AboutUs-Container {
+  margin-top: 6em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333333;
+  border-radius: 1em;
+  padding: 2em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+#AboutUs-div-top{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+  width: 100%;
+  border-bottom: 1px solid #f7f7f7;
+}
+#AboutUs-div-section {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  color: #f7f7f7;
+  border-bottom: 1px solid #d0d0d0;
+}
+#AboutUs-p-text {
+  text-align: center;
+  padding: 20px;
+  color: #ffffff;
+}
+#AboutUs-label {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  color: #ffffff;
+}
+#AboutUs-p-error {
+  text-align: center;
+  margin-top: 1rem;
+  color: #fa5252; /* Success message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+#AboutUs-p-success {
+  text-align: center;
+  margin-top: 1rem;
+  color: #ddffe7; /* Success message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+#AboutUs-div-submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+#AboutUs-Button-submit {
+  background-color: #ddffe7;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: large;
+  margin-bottom: 1rem;
+}
+#AboutUs-Button-submit:hover {
+  background-color: #98d7c2;
+}
+@media (max-width: 991px) {
+  #AboutUs-Container {
+    margin-top: 4.75em;
+  }
+}
+@media (max-width: 425px) {
+  #AboutUs-Button-submit {
+    padding: 5px 10px;
+    font-size: medium;
+  }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**jareshi** ChatUI.js component styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#ChatUI-Modal,
+#ChatUI-Modal-CreateAccount {
+  border-radius: 1rem;
+}
+#ChatUI-ModalBody,
+#ChatUI-ModalBody-CreateAccount {
+  background-color: #333333;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#ChatUI-ModalFooter,
+#ChatUI-ModalFooter-CreateAccount {
+  background-color: #333333;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: space-around;
+  border-color: #c0c0c0;
+}
+#ChatUI-Button-register,
+#ChatUI-Button-login {
+  background-color: #ddffe7;
+  color: #333333;
+  transition: 0.3;
+  border: none;
+}
+#ChatUI-p-error {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #fa5252; /* Success message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+#ChatUI-p-success {
+  margin:0;
+  padding: 0;
+  text-align: center;
+  color: #ddffe7; /* Success message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+#ChatUI-Button-register:hover #ChatUI-Button-login {
+  background-color: #98d7c2;
+}
+#ChatUI-Container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 6em;
+  position: absolute;
+  top: 0;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333333;
+  border-radius: 1em;
+  padding: 2em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  max-height: auto;
+}
+#ChatUI-div-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid #d0d0d0;
+}
+#ChatUI-h1-Name {
+  margin-right: 5px;
+}
+#ChatUI-h1-Creator {
+  font-style: italic;
+  font-size: 22px;
+  color: #d0d0d0;
+  margin-top: 0.8rem;
+}
+/* Chat header */
+#ChatUI-Row-header {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+}
+#ChatUI-div-likes-flexbox {
+  display: flex;
+  flex-direction: row;
+}
+#ChatUI-Button-unlikeChatbot {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#ChatUI-Button-likeChatbot {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#ChatUI-img-likeChatbot {
+  background-image: url("../images/thumbsup-icon-spearmint.png");
+  width: 30px;
+  height: 30px;
+}
+#ChatUI-p-likeChatbot {
+  margin-left: 0.3em;
+  margin-bottom: 0;
+  color: #d0d0d0;
+}
+#ChatUI-p-unlikeChatbot {
+  margin-left: 0.3em;
+  margin-bottom: 0;
+  color: #ddffe7;
+}
+#ChatUI-div-headerbuttons-flexbox {
+  display: flex;
+  flex-direction: row;
+}
+#ChatUI-Button-download-conversation {
+  background-image: url("../images/download-icon-gray.png");
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#ChatUI-Button-download-conversation:hover {
+  background-image: url("../images/download-icon-mint.png");
+}
+#ChatUI-Button-reset-conversation {
+  background-image: url("../images/trash-icon-light-red.png");
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#ChatUI-Button-reset-conversation:hover {
+  background-image: url("../images/trash-icon-dark-red.png");
+}
+
+/* Chat window */
+#ChatUI-div-loader {
+  /* **dpop09** found this css code in this website: https://css-loaders.com/spinner/*/
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #98d7c2;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
+  }
+}
+#ChatUI-div-chatWindow-loading {
+  margin: auto;
+  width: 100%;
+  background-color: #333333;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  height: 370px;
+  overflow-y: auto; /* Make it scrollable */
+  flex-grow: 1;
+  margin: 0.5em 0;
+  border: 2px groove #d0d0d0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#ChatUI-div-chatWindow {
+  margin: auto;
+  width: 100%;
+  background-color: #333333;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  height: 370px;
+  overflow-y: auto; /* Make it scrollable */
+  flex-grow: 1;
+  margin: 0.5em 0;
+  border: 2px groove #d0d0d0;
+}
+.ChatUI-div-exchangeContainer {
+  margin-bottom: 10px; /* Add space between message pairs */
+}
+
+/* User message styles */
+#ChatUI-div-userMessage-container {
+  display: flex;
+  flex-direction: column;
+}
+#ChatUI-div-userMessage-flexbox {
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  justify-content: space-between;
+  margin-left: 0.6rem;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  height: 1.4rem;
+  text-align: right;
+  margin-left: auto;
+}
+#ChatUI-div-userMessage-metadata {
+  display: flex;
+  flex-direction: row;
+}
+#ChatUI-img-botMessage-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: solid 1px #ddffe7;
+  margin-right: 4px;
+  overflow: hidden;
+  object-fit: cover;
+}
+#ChatUI-p-userMessage-sendertag {
+  font-weight: bold;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+}
+#ChatUI-p-userMessage-timestamp {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+}
+#ChatUI-img-userMessage-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 4px;
+  overflow: hidden;
+  object-fit: cover;
+}
+#ChatUI-div-userMessage-buttons {
+  display: flex;
+  flex-direction: row;
+}
+.ChatUI-div-userMessage {
+  background-color: #ddffe7;
+  color: #333333;
+  padding: 8px;
+  border-radius: 20px;
+  margin-top: 0;
+  text-align: right;
+  min-width: 32%;
+  max-width: 80%;
+  margin-left: auto; /* Aligns the message to the right */
+}
+
+/* Chatbot message styles */
+#ChatUI-div-botMessage-container {
+  display: flex;
+  flex-direction: column;
+}
+#ChatUI-div-botMessage-flexbox {
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  justify-content: space-between;
+  margin-left: 0.6rem;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  height: 1.4rem;
+  text-align: left;
+  margin-right: auto;
+}
+#ChatUI-div-botMessage-metadata {
+  display: flex;
+  flex-direction: row;
+}
+#ChatUI-p-botMessage-sendertag {
+  font-weight: bold;
+  margin-top: 0.5rem;
+  padding-right: 1rem;
+}
+#ChatUI-p-botMessage-timestamp {
+  margin-top: 0.5rem;
+  padding-right: 1rem;
+}
+#ChatUI-div-botMessage-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: auto;
+}
+#ChatUI-Button-regenerateMessage {
+  background-image: url("../images/refresh-icon-white.png");
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#ChatUI-Button-clipboard {
+  background-image: url("../images/clipboard-icon-white.png");
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#ChatUI-Button-regenerateMessage:hover {
+  background-image: url("../images/refresh-icon-mint.png");
+}
+#ChatUI-Button-clipboard:hover {
+  background-image: url("../images/clipboard-icon-mint.png");
+}
+
+/* Bot message styles */
+.ChatUI-div-botMessage {
+  background-color: #f1f1f1; /* A light color for bot messages */
+  color: #333333; /* Darker text color for contrast */
+  padding: 8px;
+  border-radius: 20px;
+  margin-top: 0;
+  min-width: 32%;
+  max-width: 80%;
+  text-align: left;
+  margin-right: auto;
+}
+
+.ChatUI-div-botMessage-error {
+  background-color: #fa5252;
+  font-weight: bold;
+}
+
+.ChatUI-typing {
+  background-color: #f1f1f1;
+  display: block;
+  width: 60px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ChatUI-circle {
+  display: block;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: #333333;
+  margin: 3px;
+}
+.ChatUI-circle.scaling {
+  animation: typing 1000ms ease-in-out infinite;
+  animation-delay: 3600ms;
+}
+.ChatUI-circle.bouncing {
+  animation: bounce 1000ms ease-in-out infinite;
+  animation-delay: 3600ms;
+}
+.ChatUI-circle:nth-child(1) {
+  animation-delay: 0ms;
+}
+.ChatUI-circle:nth-child(2) {
+  animation-delay: 333ms;
+}
+.ChatUI-circle:nth-child(3) {
+  animation-delay: 666ms;
+}
+#ChatUI-Button-scroll-to-latest {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-image: url("../images/back-to-latest-mint.png");
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  background-size: cover;
+  transition: 0.3s;
+  z-index: 1000;
+  position: absolute;
+  bottom: 106px;
+  right: 50px;
+  width: 40px;
+  height: 40px;
+}
+#ChatUI-Button-scroll-to-latest:hover {
+  background-image: url("../images/back-to-latest-spearmint.png");
+}
+@keyframes typing {
+  0% {
+    transform: scale(1);
+  }
+  33% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* Input group styles */
+#ChatUI-div-inputgroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1em;
+}
+
+/* Text input styles */
+#ChatUI-FormControl-usertext {
+  background-color: #f7f7f7;
+  border: 2px solid #d0d0d0;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+#ChatUI-FormControl-usertext:focus {
+  border-color: #d0d0d0;
+  box-shadow: 0 0 8px 0 rgba(124, 186, 174, 0.5);
+}
+/* Send button styles */
+#ChatUI-Button-send-message {
+  background-image: url("../images/send-message-icon-grey.png");
+  background-size: cover;
+  background-color: inherit;
+  border: none;
+  cursor: not-allowed;
+  width: 50px;
+  height: 50px;
+  transition: 0.3s;
+}
+#ChatUI-Button-send-message-active {
+  background-image: url("../images/send-message-icon-mint.png");
+  background-size: cover;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  transition: 0.3s;
+}
+#ChatUI-button-send-message-active:hover {
+  background-image: url("../images/send-message-icon-spearmint.png");
+}
+/* Responsive design for smaller screens */
+@media (max-width: 991px) {
+  #ChatUI-Container {
+    margin-top: 4.75em;
+  }
+}
+@media (max-width: 768px) {
+  #ChatUI-Form-inputgroup {
+    flex-direction: column; /* Stack input and button on small screens */
+    align-items: stretch; /* Align to the full width */
+  }
+
+  #ChatUI-FormControl-usertext,
+  #ChatUI-Button-send-message {
+    margin-right: 0; /* Remove margin between input and button on small screens */
+    margin-bottom: 0.5em; /* Add margin below the input */
+  }
+}
+@media (max-width: 700px) {
+  #ChatUI-h1-Creator {
+    font-size: 20px;
+    margin-top: 0.7rem;
+  }
+}
+@media (max-width: 500px) {
+  #ChatUI-h1-Creator {
+    font-size: 18px;
+    margin-top: 0.6rem;
+  }
+}
+@media (max-width: 428px) {
+  #ChatUI-p-botMessage-timestamp,
+  #ChatUI-p-userMessage-timestamp,
+  #ChatUI-p-botMessage-sendertag,
+  #ChatUI-p-userMessage-sendertag {
+    font-size: 10px;
+  }
+}
+@media (max-width: 400px) {
+  #ChatUI-h1-Creator {
+    font-size: 16px;
+    margin-top: 0.5rem;
+  }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**dpop09** UpdatePassword.js component styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#UpdatePassword-Container {
+  position: fixed; /* Use fixed to center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #333333;
+  border-radius: 10px; /* More pronounced border-radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden; /* Ensure no inner content overflows */
+}
+
+#UpdatePassword-Container-top {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center; /* Center contents */
+  padding-top: 20px; /* More padding at top */
+  border-bottom: solid 1px #f7f7f7;
+}
+#UpdatePassword-Form {
+  padding: 2rem;
+}
+#UpdatePassword-FormLabel {
+  margin: 0px;
+}
+#UpdatePassword-FormControl-password,
+#UpdatePassword-FormControl-confirm-password {
+  width: 100%; /* Adjust width to allow space for the icon */
+  padding: 10px;
+  padding-right: 40px; /* Extra padding to not overlay the text on the icon */
+  border: 1px solid #d0d0d0;
+  font-size: 16px;
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  position: relative; /* For absolute positioning of the icon */
+}
+#UpdatePassword-FormControl-password:focus,
+#UpdatePassword-FormControl-confirm-password:focus {
+  border-color: #98d7c2;
+}
+#UpdatePassword-Button-submit {
+  display: block; /* Block to take full width */
+  width: 100%; /* Full width button */
+  padding: 10px; /* Padding for size */
+  margin-top: 20px; /* Space from last input */
+  margin-bottom: 10px;
+  background-color: #ddffe7;
+  color: black; /* Text color */
+  border: none;
+  border-radius: 5px;
+  font-size: 18px; /* Button text size */
+  cursor: pointer;
+}
+#UpdatePassword-Button-submit:hover {
+  background-color: #98d7c2; /* Darker on hover */
+}
+#UpdatePassword-div-password {
+  position: relative; /* This ensures that the button can be absolutely positioned within */
+}
+#UpdatePassword-Button-show-password,
+#UpdatePassword-Button-hide-password,
+#UpdatePassword-Button-show-confirm-password,
+#UpdatePassword-Button-hide-confirm-password {
+  position: absolute; /* Absolute position */
+  right: 10px; /* Position to the right */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%);
+  width: 24px; /* Size of the icon */
+  height: 24px;
+  background-image: url("../images/eye-password-show.svg"); /* replaced the icon with an svg */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: transparent; /* No background */
+  border: none;
+  cursor: pointer;
+}
+#UpdatePassword-Button-hide-password,
+#UpdatePassword-Button-hide-confirm-password {
+  background-image: url("../images/eye-password-hide.svg");
+}
+#UpdatePassword-ul-password-requirements {
+  list-style-type: none; /* Removes the default list styling */
+  padding: 0; /* Removes default padding */
+  margin-top: 10px; /* Adds some space between the input field and the requirements list */
+  font-weight: bold;
+  width: calc(100% - 10px); /* Adjusts width to account for padding */
+}
+#UpdatePassword-li-requirement-met {
+  color: #ddffe7; /* Color for requirement met */
+}
+#UpdatePassword-li-requirement-not-met {
+  color: #fa5252; /* Color for requirement not met */
+}
+#UpdatePassword-p-error {
+  text-align: center;
+  color: #fa5252; /* Error message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+#UpdatePassword-div-bottom {
+  text-align: center; /* Center align text */
+}
+#UpdatePassword-Button-goback {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  left: 5px;
+  background-color: transparent;
+  border: none;
+  background-image: url("../images/goback-icon-mint.png");
+  background-size: cover;
+  background-position: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+#UpdatePassword-Button-goback:hover {
+  background-image: url("../images/goback-icon-spearmint.png");
+}
+/* Responsive adjustments, similar to those for the login form */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px; /* Reduce font size for small screens */
+  }
+  #UpdatePassword-FormControl-password {
+    font-size: 14px; /* Reduce font size for form controls */
+  }
+  #UpdatePassword-Button {
+    font-size: 14px; /* Reduce font size for the register button */
+  }
+  #UpdatePassword-Container-bottom {
+    font-size: 14px; /* Reduce font size for bottom text */
+  }
+}
+@media (max-width: 400px) {
+  #UpdatePassword-Container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    background-color: #333333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**dpop09** ForgotPasswordVerifyEmail.js component styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#ForgotPasswordVerifyEmail-Container {
+  position: fixed; /* Use fixed to center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #333333;
+  border-radius: 10px; /* More pronounced border-radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden; /* Ensure no inner content overflows */
+}
+
+#ForgotPasswordVerifyEmail-Container-top {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center; /* Center contents */
+  padding-top: 20px; /* More padding at top */
+  border-bottom: solid 1px #f7f7f7;
+}
+#ForgotPasswordVerifyEmail-Form-email{
+  padding: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: solid 1px #f7f7f7;
+}
+#ForgotPasswordVerifyEmail-Form-code {
+  padding: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+#ForgotPasswordVerifyEmail-FormLabel {
+  margin: 0px;
+}
+#ForgotPasswordVerifyEmail-FormControl-email,
+#ForgotPasswordVerifyEmail-FormControl-code {
+  width: 100%; /* Adjust width to allow space for the icon */
+  padding: 10px;
+  padding-right: 40px; /* Extra padding to not overlay the text on the icon */
+  border: 1px solid #d0d0d0;
+  font-size: 16px;
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  position: relative; /* For absolute positioning of the icon */
+}
+#ForgotPasswordVerifyEmail-FormControl-email:focus,
+#ForgotPasswordVerifyEmail-FormControl-code:focus {
+  border-color: #98d7c2;
+}
+#ForgotPasswordVerifyEmail-Button-email-submit,
+#ForgotPasswordVerifyEmail-Button-code-submit {
+  display: block; /* Block to take full width */
+  width: 100%; /* Full width button */
+  padding: 10px; /* Padding for size */
+  margin-top: 20px; /* Space from last input */
+  margin-bottom: 10px;
+  background-color: #ddffe7;
+  color: black; /* Text color */
+  border: none;
+  border-radius: 5px;
+  font-size: 18px; /* Button text size */
+  cursor: pointer;
+}
+#ForgotPasswordVerifyEmail-Button-code-submit {
+  margin-bottom: 1rem;
+}
+#ForgotPasswordVerifyEmail-Button-code-submit:hover,
+#ForgotPasswordVerifyEmail-Button-email-submit:hover {
+  background-color: #98d7c2; /* Darker on hover */
+}
+#ForgotPasswordVerifyEmail-p-error {
+  text-align: center;
+  margin-top: 1rem;
+  color: #fa5252; /* Error message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+#ForgotPasswordVerifyEmail-p-success {
+  text-align: center;
+  margin-top: 1rem;
+  color: #ddffe7; /* Success message color */
+  font-weight: bold;
+  font-size: 15px; /* Match input text size */
+}
+#ForgotPasswordVerifyEmail-Button-goback {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  left: 5px;
+  background-color: transparent;
+  border: none;
+  background-image: url("../images/goback-icon-mint.png");
+  background-size: cover;
+  background-position: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+#ForgotPasswordVerifyEmail-Button-goback:hover {
+  background-image: url("../images/goback-icon-spearmint.png");
+}
+/* Media query for very small screens: when the screen width is less than 480px */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px; /* Reduce font size for small screens */
+  }
+  #ForgotPasswordVerifyEmail-FormControl-email,
+  #ForgotPasswordVerifyEmail-FormControl-code {
+    font-size: 14px; /* Reduce font size for form controls */
+  }
+  #ForgotPasswordVerifyEmail-Button-email-submit,
+  #ForgotPasswordVerifyEmail-Button-code-submit {
+    font-size: 14px; /* Reduce font size for the register button */
+  }
+}
+@media (max-width: 400px) {
+  #ForgotPasswordVerifyEmail-Container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    background-color: #333333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**dpop09** Conversations.js component styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#Conversations-Container {
+  margin-top: 6em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333333;
+  border-radius: 1em;
+  padding: 2em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+#Conversations-div-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid #f7f7f7;
+}
+#Conversations-div-cards-loader {
+  /* **dpop09** found this css code in this website: https://css-loaders.com/spinner/*/
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #98d7c2;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
+  }
+}
+#Conversations-div-chatbot-cards-container-loading {
+  min-height: 18rem;
+  max-height: 18rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#Conversations-div-chatbot-cards-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-x: auto;
+  width: 100%;
+}
+#Conversations-Card-chatbot-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  min-width: 12rem;
+  min-height: 18rem;
+  max-width: 12rem;
+  max-height: 18rem;
+  background-color: #282828;
+  border: 1.6px solid #ddffe7;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 0.1s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+#Conversations-Card-chatbot-card:hover {
+  background-color: #2e2e2e;
+  border: 1px solid #98d7c2;
+}
+#Conversations-div-card-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+#Conversations-div-card-bottom {
+  margin: 0;
+  padding-top: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#Conversations-CardImg-avatar {
+  width: 8rem;
+  height: 8rem;
+  border: 2px solid #ddffe7;
+  border-radius: 50%;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  object-fit: cover;
+}
+#Conversations-Card-chatbot-card:hover #Conversations-CardImg-avatar {
+  border: 2px solid #98d7c2;
+}
+#Conversations-CardTitle-name {
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  color: #d0d0d0;
+}
+#Conversations-CardText-greeting {
+  font-size: 14px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #d0d0d0;
+}
+#Conversations-CardText-creator {
+  font-size: 13px;
+  font-style: italic;
+  color: #c0c0c0;
+  margin: 0;
+  padding: 0;
+}
+#Conversations-div-likes-flexbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#Conversations-div-likes-flexbox > img {
+  width: 20px;
+  height: 20px;
+}
+#Conversations-CardText-likes {
+  padding-left: 2px;
+  font-size: 13px;
+  color: #c0c0c0;
+}
+#Conversations-div-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 18rem;
+}
+#Conversations-div-empty > p {
+  color: #d0d0d0;
+  font-weight: bold;
+}
+#Conversations-div-section {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  color: #f7f7f7;
+  border-bottom: 1px solid #d0d0d0;
+}
+#Conversations-div-chatWindow-loading {
+  margin: auto;
+  width: 100%;
+  background-color: #333333;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  height: 370px;
+  overflow-y: auto; /* Make it scrollable */
+  flex-grow: 1;
+  margin: 0.5em 0;
+  border: 2px groove #d0d0d0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#Conversations-div-chatWindow {
+  margin: auto;
+  width: 100%;
+  background-color: #333333;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  height: 370px;
+  overflow-y: auto; /* Make it scrollable */
+  flex-grow: 1;
+  margin: 0.5em 0;
+  border: 2px groove #d0d0d0;
+}
+#Conversations-div-chatWindow::before {
+  content: "";
+  position: absolute;
+  top: 70%;
+  left: 2.8%;
+  right: 2.8%;
+  bottom: 0;
+  border-radius: 0.5em; /* match parent's border-radius */
+  background: linear-gradient(
+    to bottom,
+    rgba(51, 51, 51, 0) 0%,
+    rgba(51, 51, 51, 1) 100%
+  );
+  pointer-events: none; /* allows click events to pass through to underlying elements */
+}
+.Conversations-div-exchangeContainer {
+  margin-bottom: 10px; /* Add space between message pairs */
+}
+
+/* User message styles */
+#Conversations-div-userMessage-container {
+  display: flex;
+  flex-direction: column;
+}
+#Conversations-div-userMessage-flexbox {
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  justify-content: space-between;
+  margin-left: 0.6rem;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  height: 1.4rem;
+  text-align: right;
+  margin-left: auto;
+}
+#Conversations-div-userMessage-metadata {
+  display: flex;
+  flex-direction: row;
+}
+#Conversations-img-botMessage-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: solid 1px #ddffe7;
+  margin-right: 4px;
+  overflow: hidden;
+  object-fit: cover;
+}
+#Conversations-p-userMessage-sendertag {
+  font-weight: bold;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+}
+#Conversations-p-userMessage-timestamp {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+}
+#Conversations-img-userMessage-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 4px;
+  overflow: hidden;
+  object-fit: cover;
+}
+#Conversations-div-userMessage-buttons {
+  display: flex;
+  flex-direction: row;
+}
+.Conversations-div-userMessage {
+  background-color: #ddffe7;
+  color: #333333;
+  padding: 8px;
+  border-radius: 20px;
+  margin-top: 0;
+  text-align: right;
+  min-width: 32%;
+  max-width: 80%;
+  margin-left: auto; /* Aligns the message to the right */
+}
+
+/* Chatbot message styles */
+#Conversations-div-botMessage-container {
+  display: flex;
+  flex-direction: column;
+}
+#Conversations-div-botMessage-flexbox {
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  justify-content: space-between;
+  margin-left: 0.6rem;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  height: 1.4rem;
+  text-align: left;
+  margin-right: auto;
+}
+#Conversations-div-botMessage-metadata {
+  display: flex;
+  flex-direction: row;
+}
+#Conversations-p-botMessage-sendertag {
+  font-weight: bold;
+  margin-top: 0.5rem;
+  padding-right: 1rem;
+}
+#Conversations-p-botMessage-timestamp {
+  margin-top: 0.5rem;
+  padding-right: 1rem;
+}
+#Conversations-div-botMessage-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: auto;
+}
+#Conversations-Button-regenerateMessage {
+  background-image: url("../images/refresh-icon-white.png");
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  transition: 3s;
+}
+#Conversations-Button-clipboard {
+  background-image: url("../images/clipboard-icon-white.png");
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  transition: 3s;
+}
+#Conversations-Button-regenerateMessage:hover {
+  background-image: url("../images/refresh-icon-mint.png");
+}
+#Conversations-Button-clipboard:hover {
+  background-image: url("../images/clipboard-icon-mint.png");
+}
+/* Bot message styles */
+.Conversations-div-botMessage {
+  background-color: #f1f1f1; /* A light color for bot messages */
+  color: #333333; /* Darker text color for contrast */
+  padding: 8px;
+  border-radius: 20px;
+  margin-top: 0;
+  min-width: 32%;
+  max-width: 80%;
+  text-align: left;
+  margin-right: auto;
+}
+
+.Conversations-div-botMessage-error {
+  background-color: #d8000c;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  /* Enable vertical scrolling if screen width is less than 768px */
+  #Conversations-div-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #Conversations-div-chatbot-cards-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    width: auto;
+  }
+}
+@media (max-width: 480px) {
+  /* Reduce font size if screen width is less than 480px */
+  #Conversations-CardTitle-name {
+    font-size: 15px;
+  }
+  #Conversations-CardText-greeting {
+    font-size: 12px;
+  }
+}
+@media (max-width: 340px) {
+  #Conversations-Container {
+    margin-top: 4.45em;
+  }
+}

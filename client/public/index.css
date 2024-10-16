@@ -1,0 +1,38 @@
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**dpop09** global styling
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+body {
+  background-color: #EEFFF3;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #f7f7f7;
+}
+input::-ms-reveal,  
+input::-ms-clear {
+  display: none;  /* **dpop09** disable the reveal password button provided by browsers */
+}
+
+/* **dpop09** Theme color hexadecimals
+
+Mint (#DDFFE7):
+Lighter Shade: #EEFFF3
+Darker Shade: #C0FFD5
+
+Spearmint (#98D7C2):
+Lighter Shade: #B4E6D3
+Darker Shade: #7CBAAE
+
+Teal Green (#167D7F):
+Lighter Shade: #339999
+Darker Shade: #105D5D
+Even Darker Shade: #0c4a4a
+
+Teal (#29A0B1):
+Lighter Shade: #53B4C3
+Darker Shade: #1F818C
+
+Black (#333333)
+
+White (#f7f7f7):
+Slighty Darker Shade: #e4e4e4
+Darker Shade: #d0d0d0
+*/
